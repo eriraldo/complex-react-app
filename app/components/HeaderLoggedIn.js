@@ -2,15 +2,14 @@ import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import Axios from "axios"
 import DispatchContext from "../DispatchContext"
+import StateContext from "../StateContext"
 
 function HeaderLoggedIn(props) {
     const globalDispatch = useContext(DispatchContext)
+    const globalState = useContext(StateContext)
 
     function handleLogout() {
         globalDispatch({ type: "logout" })
-        localStorage.removeItem("complexappToken")
-        localStorage.removeItem("complexappUsername")
-        localStorage.removeItem("complexappAvatar")
     }
     return (
         <div className="flex-row my-3 my-md-0">
@@ -24,7 +23,7 @@ function HeaderLoggedIn(props) {
             <a href="#" className="mr-2">
                 <img
                     className="small-header-avatar"
-                    src={localStorage.getItem("complexappAvatar")}
+                    src={globalState.user.avatar}
                 />
             </a>
             <Link className="btn btn-sm btn-success mr-2" to="/create-post">

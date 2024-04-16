@@ -1,12 +1,14 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import Page from "./Page"
+import StateContext from "../StateContext"
+
 function Home() {
+    const globalState = useContext(StateContext)
     return (
         <Page title="Your Feed">
             <h2 class="text-center">
-                Hello{" "}
-                <strong>{localStorage.getItem("complexappUsername")}</strong>,
-                your feed is empty.
+                Hello <strong>{globalState.user.username}</strong>, your feed is
+                empty.
             </h2>
             <p class="lead text-muted text-center">
                 Your feed displays the latest posts from the people you follow.

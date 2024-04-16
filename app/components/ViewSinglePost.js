@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import Page from "./Page"
 function ViewSinglePost() {
     return (
-        <Page title="Fake title">
+        <Page title="My SocialApp">
             <>
                 <div class="d-flex justify-content-between">
                     <h2>Example Post Title</h2>
