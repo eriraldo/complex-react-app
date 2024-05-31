@@ -16,17 +16,27 @@ function Profile() {
     })
 
     useEffect(() => {
+        const ourRequest = axios.CancelToken.source()
         async function fetchData() {
             try {
-                const response = await axios.post(`/profile/${username}`, {
-                    token: globalState.user.token,
-                })
+                const response = await axios.post(
+                    `/profile/${username}`,
+                    {
+                        token: globalState.user.token,
+                    },
+                    {
+                        cancelToken: ourRequest.token,
+                    }
+                )
                 setProfileData(response.data)
             } catch (e) {
                 console.log("There was a problem.")
             }
         }
         fetchData()
+        return () => {
+            ourRequest.cancel()
+        }
     }, [])
     return (
         <Page tittle="Profile Screen">
