@@ -15,13 +15,7 @@ function HeaderLoggedOut(props) {
                 password,
             })
             if (response.data) {
-                localStorage.setItem("complexappToken", response.data.token)
-                localStorage.setItem(
-                    "complexappUsername",
-                    response.data.username
-                )
-                localStorage.setItem("complexappAvatar", response.data.avatar)
-                globalDispatch({ type: "login" })
+                globalDispatch({ type: "login", data: response.data })
             } else {
                 console.log("Incorrect username/password")
             }
